@@ -1,0 +1,10 @@
+{
+  "name": "cooking-ai-react-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/cooking-ai-react-e2e/src",
+  "implicitDependencies": ["cooking-ai-react"],
+  "tags": [],
+  "// targets": "to see all targets run: nx show project cooking-ai-react-e2e --web",
+  "targets": {}
+}

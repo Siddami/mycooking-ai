@@ -1,0 +1,9 @@
+{
+  "name": "gemini-service",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/gemini-service/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project gemini-service --web",
+  "targets": {}
+}

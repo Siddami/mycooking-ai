@@ -1,0 +1,10 @@
+{
+  "name": "cooking-ai-angular-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/cooking-ai-angular-e2e/src",
+  "tags": [],
+  "implicitDependencies": ["cooking-ai-angular"],
+  "// targets": "to see all targets run: nx show project cooking-ai-angular-e2e --web",
+  "targets": {}
+}
