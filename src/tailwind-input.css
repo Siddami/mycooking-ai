@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.text-primary {
+    @apply text-orange-600;
+  }
+  
+  .bg-primary {
+    @apply bg-orange-600;
+  }
+  
+  .focus\:ring-primary:focus {
+    --tw-ring-opacity: 1;
+    --tw-ring-color: rgb(249 115 22 / var(--tw-ring-opacity));
+  }
+  
+  .focus\:border-primary:focus {
+    --tw-border-opacity: 1;
+    border-color: rgb(249 115 22 / var(--tw-border-opacity));
+  }
+  
+  .bg-secondary {
+    @apply bg-green-800;
+  }
+  
+  .hover\:bg-secondary:hover {
+    @apply hover:bg-green-800;
+  }
