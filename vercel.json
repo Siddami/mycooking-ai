@@ -2,17 +2,18 @@
   "version": 2,
   "builds": [
     { "src": "api/main.js", "use": "@vercel/node" },
+    { "src": "index.html", "use": "@vercel/static" },
     { "src": "form/**", "use": "@vercel/static" },
     { "src": "recipes/**", "use": "@vercel/static" }
   ],
   "routes": [
     { "src": "/api/(.*)", "dest": "/api/main.js" },
+    { "src": "/form/(.*)", "dest": "/form/$1", "headers": { "Cache-Control": "no-cache" } },
     { "src": "/recipes/(.*)", "dest": "/recipes/$1", "headers": { "Cache-Control": "no-cache" } },
     { "src": "/assets/(.*)", "dest": "/form/assets/$1", "headers": { "Cache-Control": "no-cache" } },
-    { "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|svg|ico))", "dest": "/form/$1", "headers": { "Cache-Control": "no-cache" } },
     { 
       "src": "/(.*)", 
-      "dest": "/form/index-angular.html",
+      "dest": "/index.html",
       "headers": { "Cache-Control": "no-cache, no-store, must-revalidate" }
     }
   ],
