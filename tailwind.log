@@ -11,30 +11,4 @@ Rebuilding...
 [1m[33mwarn[39m[22m - See our documentation for recommendations:
 [1m[33mwarn[39m[22m - https://tailwindcss.com/docs/content-configuration#pattern-recommendations
 
-Done in 395ms.
-
-  #  Node.js[5273]: void node::ResetStdio() at ../src/node.cc:739
-  #  Assertion failed: !(err != 0) || (err == -1 && (*__errno_location ()) == 1)
-
------ Native stack trace -----
-
- 1: 0xcc7bb7 node::Assert(node::AssertionInfo const&) [node]
- 2: 0xc76804  [node]
- 3: 0x7e6d9ee47a76  [/lib/x86_64-linux-gnu/libc.so.6]
- 4: 0x7e6d9ee47bbe  [/lib/x86_64-linux-gnu/libc.so.6]
- 5: 0xbd946f node::DefaultProcessExitHandlerInternal(node::Environment*, node::ExitCode) [node]
- 6: 0xc37aaf node::Environment::Exit(node::ExitCode) [node]
- 7: 0xf6e67f v8::internal::FunctionCallbackArguments::Call(v8::internal::CallHandlerInfo) [node]
- 8: 0xf6eeed  [node]
- 9: 0xf6f3b5 v8::internal::Builtin_HandleApiCall(int, unsigned long*, v8::internal::Isolate*) [node]
-10: 0x1979df6  [node]
-
-  #  Node.js[5273]: void node::ResetStdio() at ../src/node.cc:739
-  #  Assertion failed: !(err != 0) || (err == -1 && (*__errno_location ()) == 1)
-
------ Native stack trace -----
-
- 1: 0xcc7bb7 node::Assert(node::AssertionInfo const&) [node]
- 2: 0xc76804  [node]
- 3: 0xc76e1d node::TrapWebAssemblyOrContinue(int, siginfo_t*, void*) [node]
- 4: 0x7e6d9ee45330  [/lib/x86_64-linux-gnu/libc.so.6]
+Done in 1230ms.
