@@ -1,23 +1,28 @@
 {
-  "buildCommand": "nx build cooking-ai-angular --configuration=production --base-href=/ && nx run cooking-ai-react:build:tailwind:prod && nx build cooking-ai-api",
-  "outputDirectory": ".",
+  "version": 2,
   "builds": [
     { "src": "api/main.js", "use": "@vercel/node" },
     { "src": "form/**", "use": "@vercel/static" },
-    { "src": "recipes/**", "use": "@vercel/static" },
-    { "src": "form/assets/**", "use": "@vercel/static" }
+    { "src": "recipes/**", "use": "@vercel/static" }
   ],
   "routes": [
     { "src": "/api/(.*)", "dest": "/api/main.js" },
-    { "src": "/recipes/(.*)", "dest": "/recipes/$1" },
-    { "src": "/assets/(.*)", "dest": "/form/assets/$1" },
-    { "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|svg|ico))", "dest": "/form/$1" },
+    { "src": "/recipes/(.*)", "dest": "/recipes/$1", "headers": { "Cache-Control": "no-cache" } },
+    { "src": "/assets/(.*)", "dest": "/form/assets/$1", "headers": { "Cache-Control": "no-cache" } },
+    { "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|svg|ico))", "dest": "/form/$1", "headers": { "Cache-Control": "no-cache" } },
     { 
       "src": "/(.*)", 
       "dest": "/form/index-angular.html",
-      "headers": {
-        "Cache-Control": "no-cache, no-store, must-revalidate"
-      }
+      "headers": { "Cache-Control": "no-cache, no-store, must-revalidate" }
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store, must-revalidate" },
+        { "key": "Pragma", "value": "no-cache" }
+      ]
     }
   ]
 }
