@@ -343,3 +343,4 @@ API: Generated recipes: [
     score: [33m0[39m
   }
 ]
+Warning: command "node dist/apps/cooking-ai-api/main.js" exited with non-zero status code
