@@ -11,6 +11,7 @@
     { "src": "/api/(.*)", "dest": "/api/main.js" },
     { "src": "/recipes/(.*)", "dest": "/recipes/$1" },
     { "src": "/assets/(.*)", "dest": "/form/assets/$1" },
+    { "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|svg|ico))", "dest": "/form/$1" },
     { 
       "src": "/(.*)", 
       "dest": "/form/index-angular.html",
