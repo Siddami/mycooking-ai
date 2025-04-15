@@ -1,10 +1,19 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { ConfigModule } from '@nestjs/config';
+import { RecipesModule } from './recipes/recipes.module';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
+    }),
+    RecipesModule,
+  ],
 })
-export class AppModule {}
+export class AppModule {
+  constructor() {
+    console.log('AppModule: Loading environment variables...');
+    console.log('AppModule: GEMINI_API_KEY from process.env:', process.env.GEMINI_API_KEY);
+  }
+}
