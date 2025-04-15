@@ -15,9 +15,12 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@mycooking-ai/gemini-service": ["gemini-service/src/index.ts"],
-      "@mycooking-ai/recipe-model": ["recipe-model/src/index.ts"],
-      "@mycooking-ai/shared-ui": ["shared-ui/src/index.ts"]
+      "@cooking-ai/react/*": ["apps/cooking-ai-react/src/*"],
+      "axios": ["node_modules/axios"],
+      "react": ["node_modules/react"],
+      "react-dom/*": ["node_modules/react-dom/*"],
+      "react-slick": ["node_modules/react-slick"],
+      "slick-carousel/*": ["node_modules/slick-carousel/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

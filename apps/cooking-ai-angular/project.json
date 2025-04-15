@@ -1,28 +1,26 @@
 {
   "name": "cooking-ai-angular",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "application",
-  "prefix": "app",
   "sourceRoot": "apps/cooking-ai-angular/src",
-  "tags": [],
+  "projectType": "application",
+  "prefix": "cooking-ai-angular",
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/cooking-ai-angular",
+        "outputPath": "dist/apps/cooking-ai-angular",
         "index": "apps/cooking-ai-angular/src/index.html",
         "browser": "apps/cooking-ai-angular/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": ["apps/cooking-ai-angular/src/polyfills.ts"],
         "tsConfig": "apps/cooking-ai-angular/tsconfig.app.json",
         "assets": [
-          {
-            "glob": "**/*",
-            "input": "apps/cooking-ai-angular/public"
-          }
+          "apps/cooking-ai-angular/src/favicon.ico",
+          "apps/cooking-ai-angular/src/assets"
         ],
         "styles": ["apps/cooking-ai-angular/src/styles.css"],
-        "scripts": []
+        "scripts": [],
+        "outputHashing": "none"
       },
       "configurations": {
         "production": {
@@ -34,8 +32,8 @@
             },
             {
               "type": "anyComponentStyle",
-              "maximumWarning": "4kb",
-              "maximumError": "8kb"
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
             }
           ],
           "outputHashing": "all"
@@ -43,10 +41,18 @@
         "development": {
           "optimization": false,
           "extractLicenses": false,
-          "sourceMap": true
+          "sourceMap": true,
+          "outputHashing": "none"
         }
       },
-      "defaultConfiguration": "production"
+      "defaultConfiguration": "production",
+      "dependsOn": [
+        {
+          "target": "build:tailwind",
+          "projects": "self",
+          "params": "forward"
+        }
+      ]
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
@@ -69,8 +75,11 @@
     "lint": {
       "executor": "@nx/eslint:lint",
       "options": {
-      "lintFilePatterns": ["apps/cooking-ai-angular/**/*.{ts,tsx,js,jsx}"]
-  }
+        "lintFilePatterns": [
+          "apps/cooking-ai-angular/**/*.ts",
+          "apps/cooking-ai-angular/**/*.html"
+        ]
+      }
     },
     "test": {
       "executor": "@nx/jest:jest",
@@ -83,9 +92,7 @@
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "cooking-ai-angular:build",
-        "port": 4200,
-        "staticFilePath": "dist/cooking-ai-angular/browser",
-        "spa": true
+        "port": 4200
       }
     }
   }
