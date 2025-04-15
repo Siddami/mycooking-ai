@@ -22,6 +22,6 @@ describe('AppComponent', () => {
   it(`should have as title 'cooking-ai-angular'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('cooking-ai-angular');
+    expect(app).toEqual('cooking-ai-angular');
   });
 });

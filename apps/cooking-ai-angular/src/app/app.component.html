@@ -1,1 +1,59 @@
-<div class="p-6 bg-blue-500 text-white rounded-lg">Tailwind in Angular!</div>
+<form (ngSubmit)="onSubmit()" class="bg-white rounded-lg shadow-lg p-6 space-y-4">
+  <div>
+    <label for="ingredients" class="block text-sm font-medium text-gray-700">Ingredients (comma-separated)</label>
+    <input
+      id="ingredients"
+      type="text"
+      [(ngModel)]="ingredients"
+      name="ingredients"
+      class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-primary focus:border-primary"
+      placeholder="e.g., chicken, rice, tomatoes"
+      required
+    />
+  </div>
+  <div>
+    <label for="cuisine" class="block text-sm font-medium text-gray-700">Cuisine Preference</label>
+    <select
+      id="cuisine"
+      [(ngModel)]="cuisine"
+      name="cuisine"
+      class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-primary focus:border-primary"
+    >
+      <option value="">Select a cuisine</option>
+      <option value="Italian">Italian</option>
+      <option value="Mexican">Mexican</option>
+      <option value="Indian">Indian</option>
+      <option value="Chinese">Chinese</option>
+      <option value="African">African</option>
+      <option value="American">American</option>
+      <option value="French">French</option>
+      <option value="Japanese">Japanese</option>
+      <option value="Mediterranean">Mediterranean</option>
+      <option value="Thai">Thai</option>
+      <option value="Spanish">Spanish</option>
+      <option value="Korean">Korean</option>
+    </select>
+  </div>
+  <div>
+    <label for="dietary" class="block text-sm font-medium text-gray-700">Dietary Preferences</label>
+    <input
+      id="dietary"
+      type="text"
+      [(ngModel)]="dietary"
+      name="dietary"
+      class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-primary focus:border-primary"
+      placeholder="e.g., vegetarian, vegan"
+      required
+    />
+  </div>
+  <button
+    type="submit"
+    class="w-full bg-primary text-white py-2 px-4 rounded-md hover:bg-secondary transition"
+    [disabled]="!ingredients || !cuisine || loading"
+  >
+    {{ loading ? 'Generating...' : 'Generate Recipes' }}
+  </button>
+</form>
+<div *ngIf="error" class="mt-4 p-4 bg-red-50 rounded-md">
+  <p class="text-red-700">{{ error }}</p>
+</div>
