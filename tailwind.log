@@ -1,0 +1,14 @@
+
+> nx run cooking-ai-react:"build:tailwind:dev"
+
+> npx tailwindcss -i ./src/tailwind-input.css -o ./assets/styles.css --watch --poll
+
+
+Rebuilding...
+
+[1m[33mwarn[39m[22m - Your `content` configuration includes a pattern which looks like it's accidentally matching all of `node_modules` and can cause serious performance issues.
+[1m[33mwarn[39m[22m - Pattern: `./apps/**/*.ts`
+[1m[33mwarn[39m[22m - See our documentation for recommendations:
+[1m[33mwarn[39m[22m - https://tailwindcss.com/docs/content-configuration#pattern-recommendations
+
+Done in 395ms.
