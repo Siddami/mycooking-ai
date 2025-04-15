@@ -1,0 +1,15 @@
+{
+    "buildCommand": "nx build cooking-ai-angular --configuration=production && nx run cooking-ai-react:build:tailwind:prod && nx build cooking-ai-api",
+    "outputDirectory": ".",
+    "builds": [
+      { "src": "api/main.js", "use": "@vercel/node" },
+      { "src": "form/**", "use": "@vercel/static" },
+      { "src": "recipes/**", "use": "@vercel/static" }
+    ],
+    "routes": [
+      { "src": "/api/(.*)", "dest": "api/main.js" },
+      { "src": "/form/(.*)", "dest": "/form/$1" },
+      { "src": "/recipes/(.*)", "dest": "/recipes/$1" },
+      { "src": "/", "dest": "/form/index-angular.html" }
+    ]
+  }
