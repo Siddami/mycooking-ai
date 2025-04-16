@@ -32,22 +32,6 @@
         }
       }
     },
-    "build:tailwind": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "npx tailwindcss -i ./src/tailwind-input.css -o ./assets/styles.css"
-      }
-    },
-    "build:tailwind:prod": {
-      "executor": "nx:run-commands",
-      "options": {
-        "commands": [
-          "nx run cooking-ai-react:build:tailwind",
-          "nx run cooking-ai-react:build:production"
-        ],
-        "parallel": false
-      }
-    },
     "serve": {
       "executor": "nx:run-commands",
       "defaultConfiguration": "development",
@@ -68,12 +52,6 @@
             }
           ]
         }
-      }
-    },
-    "build:tailwind:dev": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "npx tailwindcss -i ./src/tailwind-input.css -o ./assets/styles.css --watch --poll"
       }
     },
     "lint": {

@@ -1,7 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-   './src/**/*.{ts,tsx}',
+    "./apps/cooking-ai-react/src/**/*.{ts,tsx}",
+    "./apps/cooking-ai-angular/src/**/*.{ts,html}"
   ],
   theme: {
     extend: {

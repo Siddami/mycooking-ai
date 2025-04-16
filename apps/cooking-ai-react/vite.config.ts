@@ -2,9 +2,10 @@ import { defineConfig } from 'vite';
 import * as path from 'path';
 import react from '@vitejs/plugin-react';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
+
 export default defineConfig({
   root: path.resolve(__dirname),
-  base: '/',
+  base: '/recipes/',
   plugins: [
     react({
       jsxRuntime: 'automatic',
@@ -21,7 +22,6 @@ export default defineConfig({
       'react-slick': path.resolve(__dirname, '../../node_modules/react-slick'),
       'slick-carousel': path.resolve(__dirname, '../../node_modules/slick-carousel'),
       './app/app': path.resolve(__dirname, './src/app/app.tsx'),
-      './styles.css': path.resolve(__dirname, './src/styles.css'),
     },
   },
   server: {
@@ -38,7 +38,7 @@ export default defineConfig({
       transformMixedEsModules: true,
     },
     rollupOptions: {
-      input: path.resolve(__dirname, 'src/main.tsx'),
+      // Remove the explicit input; let Vite find index.html automatically
       output: {
         entryFileNames: 'main.js',
         chunkFileNames: 'chunks/[name].js',

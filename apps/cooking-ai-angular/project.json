@@ -18,7 +18,7 @@
           "apps/cooking-ai-angular/src/favicon.ico",
           "apps/cooking-ai-angular/src/assets"
         ],
-        "styles": ["apps/cooking-ai-angular/src/styles.css"],
+        "styles": [],
         "scripts": [],
         "outputHashing": "none"
       },

@@ -83,7 +83,7 @@ const App: React.FC = () => {
   return (
     <div className="recipe-carousel">
       {recipes.length === 0 ? (
-        <p>No recipes loaded yet.</p>
+        <p className='text-center'>No recipes loaded yet.</p>
       ) : (
         <RecipeCarousel recipes={recipes} onRecipeClick={openModal} />
       )}
