@@ -12,14 +12,14 @@
         "outputDirectory": "."
       }
     },
-    { "src": "api/**", "use": "@vercel/static" },
+    { "src": "api/main.js", "use": "@vercel/static" },
     { "src": "form/**", "use": "@vercel/static" },
     { "src": "recipes/**", "use": "@vercel/static" }
   ],
   "routes": [
-    { "src": "/api/(.*)", "dest": "http://localhost:3001/api/$1" },
+    { "src": "/api/(.*)", "dest": "/api/main.js" },
     { "src": "/form/(.*)", "dest": "/form/$1" },
     { "src": "/recipes/(.*)", "dest": "/recipes/$1" },
-    { "src": "/(.*)", "dest": "/form/index.html" }
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }

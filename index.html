@@ -7,13 +7,8 @@
     <link rel="stylesheet" href="/form/assets/styles.css" />
     <link rel="stylesheet" href="/recipes/assets/styles.css" />
     <style>
-      .recipe-carousel-container {
-        margin: 20px 0;
-        min-height: 200px;
-      }
-      .slick-slide {
-        padding: 0 10px;
-      }
+      .recipe-carousel-container { margin: 20px 0; min-height: 200px; }
+      .slick-slide { padding: 0 10px; }
     </style>
     <script>
       console.log('Shell: Initializing eventBus');
@@ -23,56 +18,33 @@
         emit(event, data) {
           console.log('EventBus: Emitting', event, data);
           this.latestData[event] = data;
-          if (this.listeners[event]) {
-            this.listeners[event].forEach((callback) => callback(data));
-          }
+          if (this.listeners[event]) this.listeners[event].forEach((callback) => callback(data));
         },
         on(event, callback) {
           this.listeners[event] = this.listeners[event] || [];
           this.listeners[event].push(callback);
-          if (this.latestData[event]) {
-            console.log(`EventBus: Calling new listener with latest ${event} data`);
-            callback(this.latestData[event]);
-          }
+          if (this.latestData[event]) callback(this.latestData[event]);
         },
         off(event, callback) {
           if (callback && this.listeners[event]) {
             const index = this.listeners[event].indexOf(callback);
-            if (index > -1) {
-              this.listeners[event].splice(index, 1);
-            }
-          } else {
-            this.listeners[event] = [];
-          }
+            if (index > -1) this.listeners[event].splice(index, 1);
+          } else this.listeners[event] = [];
         }
       };
-      console.log('Shell: Enhanced eventBus initialized');
-
-      // Track dependencies
-      window.appDependencies = {
-        angularReady: false,
-        customElementReady: false
-      };
-
-      // Prevent duplicate loading
+      window.appDependencies = { angularReady: false, customElementReady: false };
       window.angularReadyDispatched = false;
-      window.reactScriptLoaded = false;
-
       function checkDependencies() {
         if (window.appDependencies.angularReady && window.appDependencies.customElementReady) {
           console.log('Shell: All dependencies ready');
           window.dispatchEvent(new Event('allDependenciesReady'));
         }
       }
-
-      // Track custom element registration
       customElements.whenDefined('cooking-form').then(() => {
         console.log('Shell: Custom element <cooking-form> has been defined');
         window.appDependencies.customElementReady = true;
         checkDependencies();
       });
-
-      // Fallback: Force customElementReady after timeout
       setTimeout(() => {
         if (!window.appDependencies.customElementReady) {
           console.log('Shell: Forcing customElementReady after timeout');
@@ -80,6 +52,42 @@
           checkDependencies();
         }
       }, 3000);
+
+      let reactScriptLoaded = false;
+      function loadReactScript() {
+        if (reactScriptLoaded) return;
+        console.log('Shell: Loading React script');
+        const reactScript = document.createElement('script');
+        reactScript.src = '/recipes/main.js';
+        reactScript.type = 'text/javascript';
+        reactScript.async = true;
+        reactScript.onload = () => {
+          console.log('Shell: React script loaded');
+          reactScriptLoaded = true;
+          setTimeout(() => {
+            if (window.mountReactApp && typeof window.mountReactApp === 'function') {
+              console.log('Shell: Calling mountReactApp explicitly');
+              window.mountReactApp();
+            }
+          }, 500);
+        };
+        reactScript.onerror = (e) => {
+          console.error('Shell: Failed to load React script', e);
+        };
+        document.body.appendChild(reactScript);
+      }
+
+      window.addEventListener('angularReady', () => {
+        console.log('Shell: Angular ready event received');
+        loadReactScript();
+      });
+
+      setTimeout(() => {
+        if (!reactScriptLoaded) {
+          console.log('Shell: Fallback loading of React script');
+          loadReactScript();
+        }
+      }, 5000);
     </script>
   </head>
   <body>
@@ -89,26 +97,9 @@
         <cooking-form></cooking-form>
       </div>
       <div id="react-app" class="recipe-carousel-container">
-        <!-- React app will mount here -->
+        <div class="text-center py-4">Loading recipes...</div>
       </div>
     </div>
     <script src="/form/main.js" defer onload="if (!window.angularReadyDispatched) { console.log('Shell: Dispatching angularReady'); window.angularReadyDispatched = true; window.appDependencies.angularReady = true; window.dispatchEvent(new Event('angularReady')); checkDependencies(); }"></script>
-    <script>
-      window.addEventListener('angularReady', function() {
-        console.log('Shell: Angular ready, checking React script load');
-        if (!window.reactScriptLoaded) {
-          console.log('Shell: Loading React script for the first time');
-          window.reactScriptLoaded = true;
-          const reactScript = document.createElement('script');
-          reactScript.src = '/recipes/main.js';
-          reactScript.async = true;
-          reactScript.onload = () => console.log('Shell: React script loaded dynamically');
-          reactScript.onerror = () => console.error('Shell: Failed to load React script');
-          document.body.appendChild(reactScript);
-        } else {
-          console.log('Shell: React script already loaded, skipping');
-        }
-      }, { once: true });
-    </script>
   </body>
 </html>
