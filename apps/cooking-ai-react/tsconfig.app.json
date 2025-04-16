@@ -8,7 +8,8 @@
       "@nx/react/typings/image.d.ts",
       "vite/client"
     ],
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "esModuleInterop": true // Add this
   },
   "exclude": [
     "src/**/*.spec.ts",

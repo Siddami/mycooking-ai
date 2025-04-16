@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MyCookingAI</title>
     <link rel="stylesheet" href="/form/styles.css" />
-    <link rel="stylesheet" href="/recipes/assets/styles.css" />
+    <link rel="stylesheet" href="/recipes/assets/main.css" />
     <style>
       .recipe-carousel-container {
         margin: 20px 0;
@@ -92,7 +92,7 @@
         <!-- React app will mount here -->
       </div>
     </div>
-    <script src="/form/main-new.js?v=1744692893" defer onload="if (!window.angularReadyDispatched) { console.log('Shell: Dispatching angularReady'); window.angularReadyDispatched = true; window.appDependencies.angularReady = true; window.dispatchEvent(new Event('angularReady')); checkDependencies(); }"></script>
+    <script src="/form/main.js" defer onload="if (!window.angularReadyDispatched) { console.log('Shell: Dispatching angularReady'); window.angularReadyDispatched = true; window.appDependencies.angularReady = true; window.dispatchEvent(new Event('angularReady')); checkDependencies(); }"></script>
     <script>
       window.addEventListener('angularReady', function() {
         console.log('Shell: Angular ready, checking React script load');
@@ -100,7 +100,7 @@
           console.log('Shell: Loading React script for the first time');
           window.reactScriptLoaded = true;
           const reactScript = document.createElement('script');
-          reactScript.src = '/recipes/main.js?v=1744692893';
+          reactScript.src = '/recipes/main.js';
           reactScript.async = true;
           reactScript.onload = () => console.log('Shell: React script loaded dynamically');
           reactScript.onerror = () => console.error('Shell: Failed to load React script');

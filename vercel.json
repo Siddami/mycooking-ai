@@ -2,28 +2,13 @@
   "version": 2,
   "builds": [
     { "src": "api/main.js", "use": "@vercel/node" },
-    { "src": "index.html", "use": "@vercel/static" },
     { "src": "form/**", "use": "@vercel/static" },
     { "src": "recipes/**", "use": "@vercel/static" }
   ],
   "routes": [
     { "src": "/api/(.*)", "dest": "/api/main.js" },
-    { "src": "/form/(.*)", "dest": "/form/$1", "headers": { "Cache-Control": "no-cache" } },
-    { "src": "/recipes/(.*)", "dest": "/recipes/$1", "headers": { "Cache-Control": "no-cache" } },
-    { "src": "/assets/(.*)", "dest": "/form/assets/$1", "headers": { "Cache-Control": "no-cache" } },
-    { 
-      "src": "/(.*)", 
-      "dest": "/index.html",
-      "headers": { "Cache-Control": "no-cache, no-store, must-revalidate" }
-    }
-  ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "no-store, must-revalidate" },
-        { "key": "Pragma", "value": "no-cache" }
-      ]
-    }
+    { "src": "/form/(.*)", "dest": "/form/$1" },
+    { "src": "/recipes/(.*)", "dest": "/recipes/$1" },
+    { "src": "/(.*)", "dest": "/form/index.html" }
   ]
 }

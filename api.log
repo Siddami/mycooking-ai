@@ -52,26 +52,48 @@ Port 3005 is available
 [32m[Nest] 57386  - [39m04/15/2025, 4:40:04 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/vote, POST} route[39m[38;5;3m +1ms[39m
 [32m[Nest] 57386  - [39m04/15/2025, 4:40:04 PM [32m    LOG[3API: Received request with body: {
   ingredients: [32m'rice, tomatoe, pepper, onions'[39m,
-  cuisine: [32m'Italian'[39m,
-  dietary: [32m'vegetarian'[39m
-}
-[32m[Nest] 56171  - [39m04/15/2025, 4:40:40 PM [32m    LOG[39m [38;5;3m[RecipesService] [39m[32mGenerating recipes for ingredients: rice, tomatoe, pepper, onions, cuisine: Italian, dietary: vegetarian[39m
-[32m[Nest] 56171  - [39m04/15/2025, 4:40:40 PM [32m    LOG[39m [38;5;3m[RecipesService] [39m[32mSending request 1/6 to Gemini API...[39m
-[32m[Nest] 56171  - [39m04/15/2025, 4:40:41 PM [32m    LOG[39m [38;5;3m[RecipesService] [39m[32mSending request 2/6 to Gemini API...[39m
-[32m[Nest] 56171  - [39m04/15/2025, 4:40:41 PM [32m    LOG[39m [38;5;3m[RecipesService] [39m[32mSending request 3/6 to Gemini API...[39m
-[32m[Nest] 56171  - [39m04/15/2025, 4:40:41 PM [32m    LOG[39m [38;5;3m[RecipesService] [39m[32mSending request 4/6 to Gemini API...[39m
-[32m[Nest] 56171  - [39m04/15/2025, 4:40:41 PM [32m    LOG[39m [38;5;3m[RecipesService] [39m[32mSending request 5/6 to Gemini API...[39m
-[32m[Nest] 56171  - [39m04/15/2025, 4:40:41 PM [32m    LOG[39m [38;5;3m[RecipesService] [39m[32mSending request 6/6 to Gemini API...[39m
-[32m[Nest] 56171  - [39m04/15/2025, 4:40:46 PM [32m    LOG[39m [38;5;3m[RecipesService] [39m[32mReceived response 1/6 from Gemini API.[39m
-[32m[Nest] 56171  - [39m04/15/2025, 4:40:46 PM [32m    LOG[39m [38;5;3m[RecipesService] [39m[32mReceived response 5/6 from Gemini API.[39m
-[32m[Nest] 56171  - [39m04/15/2025, 4:40:46 PM [32m    LOG[39m [38;5;3m[RecipesService] [39m[32mReceived response 6/6 from Gemini API.[39m
-[32m[Nest] 56171  - [39m04/15/2025, 4:40:47 PM [32m    LOG[39m [38;5;3m[RecipesService] [39m[32mReceived response 2/6 from Gemini API.[39m
-[32m[Nest] 56171  - [39m04/15/2025, 4:40:47 PM [32m    LOG[39m [38;5;3m[RecipesService] [39m[32mReceived response 3/6 from Gemini API.[39m
-[32m[Nest] 56171  - [39m04/15/2025, 4:40:47 PM [32m    LOG[39m [38;5;3m[RecipesService] [39m[32mReceived response 4/6 from Gemini API.[39m
-API: Generated recipes: [
-  {
-    title: [32m'# Arrosto di Riso al Pomodoro e Peperoni (Roasted Rice with Tomatoes and Peppers)'[39m,
-    description: [32m'This recipe offers a unique take on rice, roasting it with tomatoes and peppers for a smoky, intense... (Recipe 1 of 6)'[39m,
+  cuis
+  #  Node.js[54483]: void node::ResetStdio() at ../src/node.cc:739
+  #  Assertion failed: !(err != 0) || (err == -1 && (*__errno_location ()) == 1)
+
+----- Native stack trace -----
+
+ 1: 0xcc7bb7 node::Assert(node::AssertionInfo const&) [node]
+ 2: 0xc76804  [node]
+ 3: 0x7e22aac47a76  [/lib/x86_64-linux-gnu/libc.so.6]
+ 4: 0x7e22aac47bbe  [/lib/x86_64-linux-gnu/libc.so.6]
+ 5: 0xbd946f node::DefaultProcessExitHandlerInternal(node::Environment*, node::ExitCode) [node]
+ 6: 0xc37aaf node::Environment::Exit(node::ExitCode) [node]
+ 7: 0xf6e67f v8::internal::FunctionCallbackArguments::Call(v8::internal::CallHandlerInfo) [node]
+ 8: 0xf6eeed  [node]
+ 9: 0xf6f3b5 v8::internal::Builtin_HandleApiCall(int, unsigned long*, v8::internal::Isolate*) [node]
+10: 0x1979df6  [node]
+
+  #  Node.js[54483]: void node::ResetStdio() at ../src/node.cc:739
+  #  Assertion failed: !(err != 0) || (err == -1 && (*__errno_location ()) == 1)
+
+----- Native stack trace -----
+
+ 1: 0xcc7bb7 node::Assert(node::AssertionInfo const&) [node]
+ 2: 0xc76804  [node]
+ 3: 0xc76e1d node::TrapWebAssemblyOrContinue(int, siginfo_t*, void*) [node]
+ 4: 0x7e22aac45330  [/lib/x86_64-linux-gnu/libc.so.6]
+ 5: 0x15a9ce0 v8::internal::tracing::TraceEventHelper::GetTracingController() [node]
+ 6: 0x1080685 v8::internal::Isolate::CaptureDetailedStackTrace(int, v8::StackTrace::StackTraceOptions) [node]
+ 7: 0xf0efa0 v8::StackTrace::CurrentStackTrace(v8::Isolate*, int, v8::StackTrace::StackTraceOptions) [node]
+ 8: 0xcc7b16 node::GetCurrentStackTrace(v8::Isolate*, int) [node]
+ 9: 0xc196ab node::DumpJavaScriptBacktrace(_IO_FILE*) [node]
+10: 0xcc7bc3 node::Assert(node::AssertionInfo const&) [node]
+11: 0xc76804  [node]
+12: 0x7e22aac47a76  [/lib/x86_64-linux-gnu/libc.so.6]
+13: 0x7e22aac47bbe  [/lib/x86_64-linux-gnu/libc.so.6]
+14: 0xbd946f node::DefaultProcessExitHandlerInternal(node::Environment*, node::ExitCode) [node]
+15: 0xc37aaf node::Environment::Exit(node::ExitCode) [node]
+16: 0xf6e67f v8::internal::FunctionCallbackArguments::Call(v8::internal::CallHandlerInfo) [node]
+17: 0xf6eeed  [node]
+18: 0xf6f3b5 v8::internal::Builtin_HandleApiCall(int, unsigned long*, v8::internal::Isolate*) [node]
+19: 0x1979df6  [node]
+[32m'This recipe offers a unique take on rice, roasting it with tomatoes and peppers for a smoky, intense... (Recipe 1 of 6)'[39m,
     ingredients: [
       [32m'* 1 cup Arborio rice (or other short-grain rice)'[39m,
       [32m'* 2 large ripe tomatoes, roughly chopped'[39m,
@@ -200,3 +222,44 @@ API: Generated recipes: [
     score: [33m0[39m
   }
 ]
+Warning: command "node dist/apps/cooking-ai-api/main.js" exited with non-zero status code
+  #  Node.js[56031]: void node::ResetStdio() at ../src/node.cc:739
+  #  Assertion failed: !(err != 0) || (err == -1 && (*__errno_location ()) == 1)
+
+----- Native stack trace -----
+
+ 1: 0xcc7bb7 node::Assert(node::AssertionInfo const&) [node]
+ 2: 0xc76804  [node]
+ 3: 0x7da2ffa47a76  [/lib/x86_64-linux-gnu/libc.so.6]
+ 4: 0x7da2ffa47bbe  [/lib/x86_64-linux-gnu/libc.so.6]
+ 5: 0xbd946f node::DefaultProcessExitHandlerInternal(node::Environment*, node::ExitCode) [node]
+ 6: 0xc37aaf node::Environment::Exit(node::ExitCode) [node]
+ 7: 0xf6e67f v8::internal::FunctionCallbackArguments::Call(v8::internal::CallHandlerInfo) [node]
+ 8: 0xf6eeed  [node]
+ 9: 0xf6f3b5 v8::internal::Builtin_HandleApiCall(int, unsigned long*, v8::internal::Isolate*) [node]
+10: 0x1979df6  [node]
+
+  #  Node.js[56031]: void node::ResetStdio() at ../src/node.cc:739
+  #  Assertion failed: !(err != 0) || (err == -1 && (*__errno_location ()) == 1)
+
+----- Native stack trace -----
+
+ 1: 0xcc7bb7 node::Assert(node::AssertionInfo const&) [node]
+ 2: 0xc76804  [node]
+ 3: 0xc76e1d node::TrapWebAssemblyOrContinue(int, siginfo_t*, void*) [node]
+ 4: 0x7da2ffa45330  [/lib/x86_64-linux-gnu/libc.so.6]
+ 5: 0x15a9ce0 v8::internal::tracing::TraceEventHelper::GetTracingController() [node]
+ 6: 0x1080685 v8::internal::Isolate::CaptureDetailedStackTrace(int, v8::StackTrace::StackTraceOptions) [node]
+ 7: 0xf0efa0 v8::StackTrace::CurrentStackTrace(v8::Isolate*, int, v8::StackTrace::StackTraceOptions) [node]
+ 8: 0xcc7b16 node::GetCurrentStackTrace(v8::Isolate*, int) [node]
+ 9: 0xc196ab node::DumpJavaScriptBacktrace(_IO_FILE*) [node]
+10: 0xcc7bc3 node::Assert(node::AssertionInfo const&) [node]
+11: 0xc76804  [node]
+12: 0x7da2ffa47a76  [/lib/x86_64-linux-gnu/libc.so.6]
+13: 0x7da2ffa47bbe  [/lib/x86_64-linux-gnu/libc.so.6]
+14: 0xbd946f node::DefaultProcessExitHandlerInternal(node::Environment*, node::ExitCode) [node]
+15: 0xc37aaf node::Environment::Exit(node::ExitCode) [node]
+16: 0xf6e67f v8::internal::FunctionCallbackArguments::Call(v8::internal::CallHandlerInfo) [node]
+17: 0xf6eeed  [node]
+18: 0xf6f3b5 v8::internal::Builtin_HandleApiCall(int, unsigned long*, v8::internal::Isolate*) [node]
+19: 0x1979df6  [node]

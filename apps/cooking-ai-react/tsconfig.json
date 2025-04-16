@@ -4,7 +4,8 @@
     "module": "esnext",
     "target": "es2020",
     "jsx": "react-jsx",
-    "types": ["cypress", "node"]
+    "types": ["cypress", "node"],
+    "esModuleInterop": true
   },
   "include": ["**/*.ts", "**/*.tsx"]
 }

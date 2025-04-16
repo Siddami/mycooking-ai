@@ -12,3 +12,43 @@ Rebuilding...
 [1m[33mwarn[39m[22m - https://tailwindcss.com/docs/content-configuration#pattern-recommendations
 
 Done in 1230ms.
+  #  Node.js[54482]: void node::ResetStdio() at ../src/node.cc:739
+  #  Assertion failed: !(err != 0) || (err == -1 && (*__errno_location ()) == 1)
+
+----- Native stack trace -----
+
+ 1: 0xcc7bb7 node::Assert(node::AssertionInfo const&) [node]
+ 2: 0xc76804  [node]
+ 3: 0x769a5da47a76  [/lib/x86_64-linux-gnu/libc.so.6]
+ 4: 0x769a5da47bbe  [/lib/x86_64-linux-gnu/libc.so.6]
+ 5: 0xbd946f node::DefaultProcessExitHandlerInternal(node::Environment*, node::ExitCode) [node]
+ 6: 0xc37aaf node::Environment::Exit(node::ExitCode) [node]
+ 7: 0xf6e67f v8::internal::FunctionCallbackArguments::Call(v8::internal::CallHandlerInfo) [node]
+ 8: 0xf6eeed  [node]
+ 9: 0xf6f3b5 v8::internal::Builtin_HandleApiCall(int, unsigned long*, v8::internal::Isolate*) [node]
+10: 0x1979df6  [node]
+
+  #  Node.js[54482]: void node::ResetStdio() at ../src/node.cc:739
+  #  Assertion failed: !(err != 0) || (err == -1 && (*__errno_location ()) == 1)
+
+----- Native stack trace -----
+
+ 1: 0xcc7bb7 node::Assert(node::AssertionInfo const&) [node]
+ 2: 0xc76804  [node]
+ 3: 0xc76e1d node::TrapWebAssemblyOrContinue(int, siginfo_t*, void*) [node]
+ 4: 0x769a5da45330  [/lib/x86_64-linux-gnu/libc.so.6]
+ 5: 0x15a9ce0 v8::internal::tracing::TraceEventHelper::GetTracingController() [node]
+ 6: 0x1080685 v8::internal::Isolate::CaptureDetailedStackTrace(int, v8::StackTrace::StackTraceOptions) [node]
+ 7: 0xf0efa0 v8::StackTrace::CurrentStackTrace(v8::Isolate*, int, v8::StackTrace::StackTraceOptions) [node]
+ 8: 0xcc7b16 node::GetCurrentStackTrace(v8::Isolate*, int) [node]
+ 9: 0xc196ab node::DumpJavaScriptBacktrace(_IO_FILE*) [node]
+10: 0xcc7bc3 node::Assert(node::AssertionInfo const&) [node]
+11: 0xc76804  [node]
+12: 0x769a5da47a76  [/lib/x86_64-linux-gnu/libc.so.6]
+13: 0x769a5da47bbe  [/lib/x86_64-linux-gnu/libc.so.6]
+14: 0xbd946f node::DefaultProcessExitHandlerInternal(node::Environment*, node::ExitCode) [node]
+15: 0xc37aaf node::Environment::Exit(node::ExitCode) [node]
+16: 0xf6e67f v8::internal::FunctionCallbackArguments::Call(v8::internal::CallHandlerInfo) [node]
+17: 0xf6eeed  [node]
+18: 0xf6f3b5 v8::internal::Builtin_HandleApiCall(int, unsigned long*, v8::internal::Isolate*) [node]
+19: 0x1979df6  [node]

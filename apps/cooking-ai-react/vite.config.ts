@@ -1,14 +1,15 @@
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
 import * as path from 'path';
-
+import react from '@vitejs/plugin-react';
+import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 export default defineConfig({
-  root: path.resolve(__dirname), 
-  base: '/', 
+  root: path.resolve(__dirname),
+  base: '/',
   plugins: [
     react({
       jsxRuntime: 'automatic',
     }),
+    nxViteTsPaths(),
   ],
   resolve: {
     alias: {
@@ -26,7 +27,28 @@ export default defineConfig({
   server: {
     port: 4201,
     host: 'localhost',
-    open: true
+    open: true,
   },
   clearScreen: false,
+  build: {
+    outDir: '../../dist/apps/cooking-ai-react',
+    emptyOutDir: true,
+    reportCompressedSize: true,
+    commonjsOptions: {
+      transformMixedEsModules: true,
+    },
+    rollupOptions: {
+      input: path.resolve(__dirname, 'src/main.tsx'),
+      output: {
+        entryFileNames: 'main.js',
+        chunkFileNames: 'chunks/[name].js',
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name?.endsWith('.css')) {
+            return 'assets/[name][extname]';
+          }
+          return 'assets/[name][extname]';
+        },
+      },
+    },
+  },
 });

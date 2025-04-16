@@ -11,7 +11,15 @@
       "defaultConfiguration": "production",
       "options": {
         "outputPath": "dist/apps/cooking-ai-react",
-        "configFile": "apps/cooking-ai-react/vite.config.ts"
+        "configFile": "apps/cooking-ai-react/vite.config.ts",
+        "skipIndexHtml": true,
+        "assets": [
+        {
+          "glob": "assets/styles.css",
+          "input": "apps/cooking-ai-react",
+          "output": "assets"
+        }
+      ]
       },
       "configurations": {
         "development": {
@@ -22,19 +30,22 @@
           "sourcemap": false,
           "minify": true
         }
-      },
-      "dependsOn": [
-        {
-          "target": "build:tailwind",
-          "projects": "self",
-          "params": "forward"
-        }
-      ]
+      }
     },
     "build:tailwind": {
       "executor": "nx:run-commands",
       "options": {
         "command": "npx tailwindcss -i ./src/tailwind-input.css -o ./assets/styles.css"
+      }
+    },
+    "build:tailwind:prod": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx run cooking-ai-react:build:tailwind",
+          "nx run cooking-ai-react:build:production"
+        ],
+        "parallel": false
       }
     },
     "serve": {
