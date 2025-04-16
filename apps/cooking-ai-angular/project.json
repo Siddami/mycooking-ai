@@ -16,9 +16,14 @@
         "tsConfig": "apps/cooking-ai-angular/tsconfig.app.json",
         "assets": [
           "apps/cooking-ai-angular/src/favicon.ico",
-          "apps/cooking-ai-angular/src/assets"
+          "apps/cooking-ai-angular/src/assets",
+          {
+            "glob": "styles.css",
+            "input": "../../dist/assets/styles.css",
+            "output": "assets/"
+          }
         ],
-        "styles": [],
+        "styles": [], 
         "scripts": [],
         "outputHashing": "none"
       },
@@ -36,7 +41,8 @@
               "maximumError": "4kb"
             }
           ],
-          "outputHashing": "none"
+          "outputHashing": "none",
+          "baseHref": "/form/"
         },
         "development": {
           "optimization": false,

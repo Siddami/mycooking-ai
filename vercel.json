@@ -1,25 +1,22 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "version": 2,
-  "buildCommand": "npm run prepare-deploy",
-  "outputDirectory": ".",
   "builds": [
     {
       "src": "package.json",
       "use": "@vercel/static-build",
       "config": {
         "buildCommand": "npm run prepare-deploy",
-        "outputDirectory": "."
+        "distDir": "."
       }
     },
-    { "src": "api/main.js", "use": "@vercel/static" },
-    { "src": "form/**", "use": "@vercel/static" },
-    { "src": "recipes/**", "use": "@vercel/static" }
+    { "src": "api/main.js", "use": "@vercel/node" }
   ],
   "routes": [
     { "src": "/api/(.*)", "dest": "/api/main.js" },
-    { "src": "/form/(.*)", "dest": "/form/$1" },
-    { "src": "/recipes/(.*)", "dest": "/recipes/$1" },
+    { "src": "/form/(.*)", "dest": "/form/$1", "headers": { "Cache-Control": "public, max-age=31536000, immutable" } },
+    { "src": "/recipes/(.*)", "dest": "/recipes/$1", "headers": { "Cache-Control": "public, max-age=31536000, immutable" } },
     { "src": "/(.*)", "dest": "/index.html" }
-  ]
+  ],
+  "alias": ["mycooking-ai.com", "www.mycooking-ai.com"]
 }

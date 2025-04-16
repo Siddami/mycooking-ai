@@ -9,7 +9,7 @@
       "executor": "@nx/webpack:webpack",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/cooking-ai-api",
+        "outputPath": "dist/api",
         "main": "apps/cooking-ai-api/src/main.ts",
         "tsConfig": "apps/cooking-ai-api/tsconfig.app.json",
         "webpackConfig": "apps/cooking-ai-api/webpack.config.cjs",
