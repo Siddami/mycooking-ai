@@ -4,6 +4,14 @@
   "buildCommand": "npm run prepare-deploy",
   "outputDirectory": ".",
   "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "buildCommand": "npm run prepare-deploy",
+        "outputDirectory": "."
+      }
+    },
     { "src": "api/**", "use": "@vercel/static" },
     { "src": "form/**", "use": "@vercel/static" },
     { "src": "recipes/**", "use": "@vercel/static" }
