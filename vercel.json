@@ -1,5 +1,8 @@
 {
   "version": 2,
+  "build": {
+    "command": "npm run prepare-deploy"
+  },
   "builds": [
     { "src": "api/**", "use": "@vercel/static" },
     { "src": "form/**", "use": "@vercel/static" },
