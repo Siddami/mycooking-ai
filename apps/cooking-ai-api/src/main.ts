@@ -67,7 +67,7 @@ async function findAvailablePort(startPort: number): Promise<number> {
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  
+
   app.enableCors({
     origin: '*', // Allow all origins for now (temporary for debugging)
     methods: 'GET,POST,OPTIONS',
@@ -76,7 +76,7 @@ async function bootstrap() {
     maxAge: 86400,
   });
 
-  const port = await findAvailablePort(3001);
+  const port = process.env.PORT || (await findAvailablePort(3001));
   await app.listen(port, '0.0.0.0');
   console.log(`API is listening on port ${port}`);
 }
