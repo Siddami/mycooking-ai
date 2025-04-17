@@ -68,12 +68,25 @@ async function findAvailablePort(startPort: number): Promise<number> {
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  // Define allowed origins
+  const allowedOrigins = [
+    'https://mycooking-ai.vercel.app', // Vercel production domain
+    'http://localhost:3000', // Local development 
+    'http://localhost:4200', // Angular dev server (if running separately)
+  ];
+
   app.enableCors({
-    origin: '*', // Allow all origins for now (temporary for debugging)
-    methods: 'GET,POST,OPTIONS',
+    origin: (origin, callback) => {
+      // Allow requests with no origin (e.g., curl, Postman) or origins in the allowed list
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    methods: 'GET,POST,OPTIONS,PATCH,PUT,DELETE',
     allowedHeaders: 'Content-Type,Authorization',
-    credentials: true,
-    maxAge: 86400,
+    maxAge: 86400, // Cache CORS preflight for 24 hours
   });
 
   const port = process.env.PORT || (await findAvailablePort(3001));
