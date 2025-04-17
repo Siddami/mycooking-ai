@@ -13,8 +13,8 @@ RUN npm install
 # Copy the entire source code (including apps/)
 COPY apps/ ./apps/
 
-# Build the API
-RUN npm run build:api
+# Clear Nx cache and build the API with verbose output and no cache
+RUN npx nx reset && npm run build:api -- --verbose --skip-nx-cache
 
 # Expose the port
 EXPOSE 3001
