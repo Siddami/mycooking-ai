@@ -13,8 +13,8 @@
     "build:dev": "nx build cooking-ai-angular && nx build cooking-ai-react && nx build cooking-ai-api && npm run prepare-dev",
     "prepare-dev": "mkdir -p form recipes api && cp -r dist/apps/cooking-ai-angular/* form/ && ( [ -d form/browser ] && mv form/browser/* form/ && rmdir form/browser || true ) && cp -r dist/apps/cooking-ai-react/* recipes/ && mkdir -p recipes/assets form/assets && cp dist/assets/styles.css recipes/assets/styles.css && cp dist/assets/styles.css form/assets/styles.css && cp dist/apps/cooking-ai-api/main.js api/",
     "build": "nx build cooking-ai-angular --prod && nx build cooking-ai-react --prod && nx build cooking-ai-api --prod",
-    "prepare-deploy": "npm run build:tailwind && nx build cooking-ai-angular --configuration=production --skip-nx-cache --base-href=/form/ --outputPath=dist/form && nx build cooking-ai-react --configuration=production --skip-nx-cache --outputPath=dist/recipes && nx build cooking-ai-api --skip-nx-cache --outputPath=dist/apps/cooking-ai-api && rm -rf form recipes api && mkdir -p form recipes api && cp -r dist/form/* form/ && ( [ -d form/browser ] && mv form/browser/* form/ && rmdir form/browser || true ) && cp -r dist/recipes/* recipes/",
-    "deploy": "npm run build && npm run prepare-deploy && vercel --prod"
+    "prepare-deploy": "npm run build:tailwind && nx build cooking-ai-angular --configuration=production --skip-nx-cache --base-href=/form/ --outputPath=dist/form && nx build cooking-ai-react --configuration=production --skip-nx-cache --outputPath=dist/recipes && ( [ -d dist/form/browser ] && mv dist/form/browser/* dist/form/ && rmdir dist/form/browser || true ) && mkdir -p dist/form/assets dist/recipes/assets && cp apps/cooking-ai-angular/src/assets/styles.css dist/form/assets/styles.css && cp apps/cooking-ai-react/src/assets/styles.css dist/recipes/assets/styles.css",
+    "deploy": "npm run build && npm run prepare-deploy && cp index.html dist/ && vercel --prod"
   },
   "private": true,
   "devDependencies": {
@@ -103,6 +103,7 @@
     "@nestjs/core": "10.4.5",
     "@nestjs/platform-express": "10.4.5",
     "axios": "1.7.4",
+    "docker": "^1.0.0",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "react": "18.3.1",

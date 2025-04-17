@@ -31,7 +31,7 @@ const RecipeCarousel: React.FC<RecipeCarouselProps> = ({ recipes, onRecipeClick 
         },
       },
       {
-        breakpoint: 640, 
+        breakpoint: 640,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -40,6 +40,11 @@ const RecipeCarousel: React.FC<RecipeCarouselProps> = ({ recipes, onRecipeClick 
         },
       },
     ],
+  };
+
+  const handleVote = (index: number, vote: 'up' | 'down') => {
+      // Emit a vote event that Angular can listen for
+      (window.eventBus as any)?.emit('submitVote', { recipeId: index, vote });
   };
 
   return (
@@ -53,6 +58,26 @@ const RecipeCarousel: React.FC<RecipeCarouselProps> = ({ recipes, onRecipeClick 
             <h3 className="text-xl font-semibold mb-2">{recipe.title}</h3>
             <p className="text-gray-700">{recipe.description}</p>
             <p className="text-sm text-gray-500 mt-2">Score: {recipe.score}</p>
+            <div className="mt-4 flex space-x-2">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevent triggering onRecipeClick
+                  handleVote(index, 'up');
+                }}
+                className="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600 transition"
+              >
+                Upvote
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevent triggering onRecipeClick
+                  handleVote(index, 'down');
+                }}
+                className="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600 transition"
+              >
+                Downvote
+              </button>
+            </div>
           </div>
         </div>
       ))}

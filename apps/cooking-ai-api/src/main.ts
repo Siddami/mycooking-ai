@@ -70,9 +70,10 @@ async function bootstrap() {
 
   // Define allowed origins
   const allowedOrigins = [
-    'https://mycooking-ai.vercel.app', // Vercel production domain
-    'http://localhost:3000', // Local development 
-    'http://localhost:4200', // Angular dev server (if running separately)
+    'https://mycooking-ai.vercel.app', 
+    'http://127.0.0.1:3000',
+    'http://localhost:3000',
+    'http://localhost:4200',
   ];
 
   app.enableCors({
@@ -81,7 +82,8 @@ async function bootstrap() {
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
-        callback(new Error('Not allowed by CORS'));
+        console.log(`CORS rejected origin: ${origin}`);
+        callback(null, false);
       }
     },
     methods: 'GET,POST,OPTIONS,PATCH,PUT,DELETE',

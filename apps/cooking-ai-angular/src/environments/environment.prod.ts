@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiBaseUrl: 'https://mycooking-ai-123.vercel.app/api', 
+  apiBaseUrl: 'https://cooking-ai-api.onrender.com', 
 };
