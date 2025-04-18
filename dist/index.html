@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyCookingAI</title>
+    <link rel="stylesheet" href="./form/assets/styles.css" />
+    <link rel="stylesheet" href="./recipes/assets/styles.css" />
+    <style>
+      .recipe-carousel-container { margin: 20px 0; min-height: 200px; }
+      .slick-slide { padding: 0 10px; }
+    </style>
+    <script>
+      console.log('Shell: Initializing eventBus');
+      window.eventBus = window.eventBus || {
+        listeners: {},
+        latestData: {},
+        emit(event, data) {
+          console.log('EventBus: Emitting', event, data);
+          this.latestData[event] = data;
+          if (this.listeners[event]) this.listeners[event].forEach((callback) => callback(data));
+        },
+        on(event, callback) {
+          this.listeners[event] = this.listeners[event] || [];
+          this.listeners[event].push(callback);
+          if (this.latestData[event]) callback(this.latestData[event]);
+        },
+        off(event, callback) {
+          if (callback && this.listeners[event]) {
+            const index = this.listeners[event].indexOf(callback);
+            if (index > -1) this.listeners[event].splice(index, 1);
+          } else this.listeners[event] = [];
+        }
+      };
+      window.appDependencies = { angularReady: false, customElementReady: false };
+      window.angularReadyDispatched = false;
+      function checkDependencies() {
+        if (window.appDependencies.angularReady && window.appDependencies.customElementReady) {
+          console.log('Shell: All dependencies ready');
+          window.dispatchEvent(new Event('allDependenciesReady'));
+        }
+      }
+      customElements.whenDefined('cooking-form').then(() => {
+        console.log('Shell: Custom element <cooking-form> has been defined');
+        window.appDependencies.customElementReady = true;
+        checkDependencies();
+      });
+      setTimeout(() => {
+        if (!window.appDependencies.customElementReady) {
+          console.log('Shell: Forcing customElementReady after timeout');
+          window.appDependencies.customElementReady = true;
+          checkDependencies();
+        }
+      }, 3000);
+
+      let reactScriptLoaded = false;
+      function loadReactScript() {
+        if (reactScriptLoaded) return;
+        console.log('Shell: Loading React script');
+        const reactScript = document.createElement('script');
+        reactScript.src = './recipes/main.js';
+        reactScript.type = 'text/javascript';
+        reactScript.async = true;
+        reactScript.onload = () => {
+          console.log('Shell: React script loaded');
+          reactScriptLoaded = true;
+          setTimeout(() => {
+            if (window.mountReactApp && typeof window.mountReactApp === 'function') {
+              console.log('Shell: Calling mountReactApp explicitly');
+              window.mountReactApp();
+            }
+          }, 500);
+        };
+        reactScript.onerror = (e) => {
+          console.error('Shell: Failed to load React script', e);
+        };
+        document.body.appendChild(reactScript);
+      }
+
+      window.addEventListener('angularReady', () => {
+        console.log('Shell: Angular ready event received');
+        loadReactScript();
+      });
+
+      setTimeout(() => {
+        if (!reactScriptLoaded) {
+          console.log('Shell: Fallback loading of React script');
+          loadReactScript();
+        }
+      }, 5000);
+    </script>
+  </head>
+  <body>
+    <div class="container mx-auto p-4">
+      <h1 class="text-3xl font-bold text-center mb-8">MyCookingAI</h1>
+      <div id="angular-app" class="mb-8">
+        <cooking-form></cooking-form>
+      </div>
+      <div id="react-app" class="recipe-carousel-container">
+        <div class="text-center py-4">Loading recipes...</div>
+      </div>
+    </div>
+    <script src="./form/main.js" defer onload="if (!window.angularReadyDispatched) { console.log('Shell: Dispatching angularReady'); window.angularReadyDispatched = true; window.appDependencies.angularReady = true; window.dispatchEvent(new Event('angularReady')); checkDependencies(); }"></script>
+  </body>
+</html>
