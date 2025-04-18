@@ -14,7 +14,8 @@
   "routes": [
     { "src": "/form/(.*)", "dest": "/form/$1", "headers": { "Cache-Control": "public, max-age=31536000, immutable" } },
     { "src": "/recipes/(.*)", "dest": "/recipes/$1", "headers": { "Cache-Control": "public, max-age=31536000, immutable" } },
-    { "src": "/(.*)", "dest": "/index.html" }
+    { "src": "/assets/(.*)", "dest": "/assets/$1", "headers": { "Cache-Control": "public, max-age=31536000, immutable" } },
+    { "src": "/(.*)", "dest": "/index.html", "headers": { "Cache-Control": "public, max-age=0, must-revalidate" } }
   ],
   "alias": ["mycooking-ai.com", "www.mycooking-ai.com"]
 }
