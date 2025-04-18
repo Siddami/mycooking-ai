@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiBaseUrl: 'https://cooking-ai-api.onrender.com',
+  apiBaseUrl: 'https://cooking-ai-api.onrender.com/api',
 };

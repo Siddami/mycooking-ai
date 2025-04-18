@@ -7,7 +7,7 @@
       "use": "@vercel/static-build",
       "config": {
         "buildCommand": "npm run prepare-deploy",
-        "distDir": "."
+        "distDir": "dist"
       }
     },
     { "src": "api/main.js", "use": "@vercel/node" }

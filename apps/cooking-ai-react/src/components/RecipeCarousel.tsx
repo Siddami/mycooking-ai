@@ -44,7 +44,7 @@ const RecipeCarousel: React.FC<RecipeCarouselProps> = ({ recipes, onRecipeClick 
 
   const handleVote = (index: number, vote: 'up' | 'down') => {
       // Emit a vote event that Angular can listen for
-      (window.eventBus as any)?.emit('submitVote', { recipeId: index, vote });
+      (window.eventBus as any)?.emit('submitVote', { recipeId: index + 1, vote });
   };
 
   return (

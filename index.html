@@ -4,8 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MyCookingAI</title>
-    <link rel="stylesheet" href="/form/assets/styles.css" />
-    <link rel="stylesheet" href="/recipes/assets/styles.css" />
+    <link rel="stylesheet" href="./form/assets/styles.css" />
+    <link rel="stylesheet" href="./recipes/assets/styles.css" />
+    <link rel="icon" href="./favicon.ico" />
     <style>
       .recipe-carousel-container { margin: 20px 0; min-height: 200px; }
       .slick-slide { padding: 0 10px; }
@@ -58,7 +59,7 @@
         if (reactScriptLoaded) return;
         console.log('Shell: Loading React script');
         const reactScript = document.createElement('script');
-        reactScript.src = '/recipes/main.js';
+        reactScript.src = './recipes/main.js';
         reactScript.type = 'text/javascript';
         reactScript.async = true;
         reactScript.onload = () => {
@@ -100,6 +101,6 @@
         <div class="text-center py-4">Loading recipes...</div>
       </div>
     </div>
-    <script src="/form/main.js" defer onload="if (!window.angularReadyDispatched) { console.log('Shell: Dispatching angularReady'); window.angularReadyDispatched = true; window.appDependencies.angularReady = true; window.dispatchEvent(new Event('angularReady')); checkDependencies(); }"></script>
+    <script src="./form/main.js" defer onload="if (!window.angularReadyDispatched) { console.log('Shell: Dispatching angularReady'); window.angularReadyDispatched = true; window.appDependencies.angularReady = true; window.dispatchEvent(new Event('angularReady')); checkDependencies(); }"></script>
   </body>
 </html>

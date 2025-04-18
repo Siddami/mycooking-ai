@@ -83,8 +83,10 @@ export class AppComponent implements OnInit, AfterViewInit {
       this.submitVote(recipeId, vote);
     });
 
-    // Test API connectivity on init
-    this.checkApiHealth();
+    console.log('API Base URL:', this.API_BASE_URL);
+    console.log('Production mode:', environment.production);
+    console.log('Angular: AppComponent initialized');
+
   }
 
   ngAfterViewInit() {
@@ -97,21 +99,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   private handleError(error: HttpErrorResponse): Observable<never> {
     console.error('API Error:', error);
     return throwError(() => new Error('Something went wrong; please try again later.'));
-  }
-
-  private checkApiHealth() {
-    this.http
-      .get(`${this.API_BASE_URL}/health`)
-      .pipe(catchError(this.handleError))
-      .subscribe({
-        next: (response) => {
-          console.log('API Health Check:', response);
-        },
-        error: (err) => {
-          console.error('API Health Check Failed:', err.message);
-          this.error = 'API is not reachable. Please try again later.';
-        },
-      });
   }
 
   onSubmit() {
