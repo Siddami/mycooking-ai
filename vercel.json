@@ -9,11 +9,9 @@
         "buildCommand": "npm run prepare-deploy",
         "distDir": "dist"
       }
-    },
-    { "src": "api/main.js", "use": "@vercel/node" }
+    }
   ],
   "routes": [
-    { "src": "/api/(.*)", "dest": "/api/main.js" },
     { "src": "/form/(.*)", "dest": "/form/$1", "headers": { "Cache-Control": "public, max-age=31536000, immutable" } },
     { "src": "/recipes/(.*)", "dest": "/recipes/$1", "headers": { "Cache-Control": "public, max-age=31536000, immutable" } },
     { "src": "/(.*)", "dest": "/index.html" }
